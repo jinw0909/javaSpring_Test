@@ -26,4 +26,8 @@ public class RealEstateBO {
 	public int addRealEstate(RealEstate realEstate) {
 		return realEstateDAO.insertRealEstate(realEstate);
 	}
+	
+	public int addRealEstateFromParam(int realtorId, String address, int area, String type, int price, int rentPrice) {
+		return realEstateDAO.insertRealEstateFromParam(realtorId, address, area, type, price, rentPrice);
+	}
 }
