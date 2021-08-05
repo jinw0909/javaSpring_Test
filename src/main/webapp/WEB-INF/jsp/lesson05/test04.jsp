@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,47 +15,46 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </head>
 <body>
-
 	<div class="container">
-		<h1 class="mt-3">1. 후보자 득표율</h1>
+		<h1 class="mt-3">회원 정보 리스트</h1>
 		<table class="table text-center">
 			<thead>
 				<tr>
-					<th>기호</th>
-					<th>득표수</th>
-					<th>득표율</th>
+					<th>No</th>
+					<th>이름</th>
+					<th>전화 번호</th>
+					<th>국적</th>
+					<th>이메일</th>
+					<th>자기소개</th>
 				</tr>
 			</thead>
 			<tbody>
-			<c:forEach var="vote" items="${candidates }" varStatus="status">
+				<c:forEach var="member" items="${members }" varStatus="status">
 				<tr>
 					<td>${status.count }</td>
-					<td><fmt:formatNumber value="${vote }" /></td>
-					<td><fmt:formatNumber value="${vote / 1000000}" type="percent" /></td>
+					<td>${member.name }</td>
+					<td>
+						<c:choose>
+							<c:when test="${fn:startsWith(member.phoneNumber, '010') }">
+								${member.phoneNumber }
+							</c:when>
+							<c:otherwise>
+								유효하지 않은 전화번호
+							</c:otherwise>
+						</c:choose>
+					</td>
+					<td>${fn:replace(member.nationality, "삼국시대", "삼국 - ") }</td>
+					<td><b>${fn:split(member.email, "@")[0] }</b>@${fn:split(member.email, "@")[1] }</td>
+					<td>
+						${fn:substring(member.introduce, 0, 15) }
+						<c:if test="${fn:length(member.introduce) >15 }">
+							...
+						</c:if>
+							
+						
+					</td>
 				</tr>
-			</c:forEach>
-			</tbody>
-		</table>
-		<h1 class="mt-5">2. 카드 명세서</h1>
-		<table class="table text-center">
-			<thead>
-				<tr>
-					<th>사용처</th>
-					<th>가격</th>
-					<th>사용날짜</th>
-					<th>할부</th>
-				</tr>
-			</thead>
-			<tbody>
-			<c:forEach var="card" items="${cardBills }" varStatus="status">
-				<tr>
-					<td>${card.store }</td>
-					<td><fmt:formatNumber value="${card.pay }" type="currency"/></td>
-					<fmt:parseDate var="newDate" value="${card.date }" pattern="yyyy-MM-dd"/>
-					<td><fmt:formatDate value="${newDate}" pattern="yyyy년 MM월 dd일"/></td>
-					<td>${card.installment }</td>
-				</tr>
-			</c:forEach>
+				</c:forEach>
 			</tbody>
 		</table>
 	</div>
