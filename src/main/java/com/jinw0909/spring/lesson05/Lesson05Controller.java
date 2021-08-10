@@ -9,8 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.jinw0909.spring.lesson04.model.Realtor;
 import com.jinw0909.spring.lesson05.bo.WeatherhistoryBO;
 import com.jinw0909.spring.lesson05.model.Member;
 import com.jinw0909.spring.lesson05.model.Weatherhistory;
@@ -187,8 +189,15 @@ public class Lesson05Controller {
 	}
 	
 	@GetMapping("/test05/2")
-	public String test05_2(Model model) {
+	public String test05_2() {
 		return "lesson05/test05_2";
+	}
+	
+	@GetMapping("/test05/add_weatherhistory")
+	public String test05_insert(@ModelAttribute Weatherhistory weatherhistory, Model model) {
+		
+		weatherhistoryBO.addWeatherhistory(weatherhistory);
+		return "redirect:/lesson05/test05/1";
 	}
 
 }

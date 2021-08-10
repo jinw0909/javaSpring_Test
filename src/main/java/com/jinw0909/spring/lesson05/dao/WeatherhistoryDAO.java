@@ -9,4 +9,8 @@ import com.jinw0909.spring.lesson05.model.Weatherhistory;
 @Repository
 public interface WeatherhistoryDAO {
 	public List<Weatherhistory> selectWeatherhistory();
+	
+	public int insertWeatherhistory(Weatherhistory weatherhistory);
 }
+
+

@@ -15,4 +15,23 @@
 		FROM
 			`weatherhistory`
 	</select>
+	<insert id="insertWeatherhistory" parameterType="com.jinw0909.spring.lesson05.model.Weatherhistory"
+ 	useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO `weatherhistory`(
+			`date`
+			, `weather`
+			, `temperatures`
+			, `precipitation`
+			, `microDust`
+			, `windSpeed`
+		)
+		VALUES (
+			#{date}
+			, #{weather}
+			, #{temperatures}
+			, #{precipitation}
+			, #{microDust}
+			, #{windSpeed}
+		)
+	</insert>
 </mapper>

@@ -1,5 +1,7 @@
 package com.jinw0909.spring.lesson05.bo;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,5 +18,12 @@ public class WeatherhistoryBO {
 	
 	public List<Weatherhistory> getWeatherhistory() {
 		return weatherhistoryDAO.selectWeatherhistory();
+	}
+	
+	public int addWeatherhistory(Weatherhistory weatherhistory) {
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//		Date date = format.parse(weatherhistory.getDate());
+//		weatherhistory.setDate();
+		return weatherhistoryDAO.insertWeatherhistory(weatherhistory);
 	}
 }

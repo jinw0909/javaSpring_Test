@@ -26,8 +26,8 @@
 			</div>
 			<nav class="p-3">
 				<ul class="nav flex-column">
-					<li class="nav-item"><a class="nav-link" href="#none">날씨</a></li>
-					<li class="nav-item"><a class="nav-link" href="#none">날씨입력</a></li>
+					<li class="nav-item"><a class="nav-link" href="/lesson05/test05/1">날씨</a></li>
+					<li class="nav-item"><a class="nav-link" href="/lesson05/test05/2">날씨입력</a></li>
 					<li class="nav-item"><a class="nav-link" href="#none">테마날씨</a></li>
 					<li class="nav-item"><a class="nav-link" href="#none">관측기후</a></li>
 				</ul>
@@ -35,7 +35,7 @@
 		</aside>
 		<section class="col-9">
 			<h3 class="pt-4">날씨 입력</h3>
-			<form action="/lesson05/insert" method="get">
+			<form action="/lesson05/test05/add_weatherhistory" method="get">
 				<label>날짜</label><input type="text" class="form-control" name="date">
 				<label>날씨</label>
 				<select type="text" class="form-control" name="weather">
@@ -44,6 +44,18 @@
 					<option>구름</option>
 					<option>비</option>
 				</select>
+				<label>미세먼지</label>
+				<select type="text" class="form-control" name="microDust">
+					<option>좋음</option>
+					<option>나쁨</option>
+					<option>보통</option>
+					<option>최악</option>
+				</select>
+				<label>기온</label><input type="text" name="temperatures" class="form-control">
+				<label>강수량</label><input type="text" name="precipitation" class="form-control">
+				<label>풍속</label><input type="text" name="windSpeed" class="form-control">
+				
+				<input type="submit" class="btn btn-success mt-3" value="제출">
 			</form>
 		</section>
 		</main>
