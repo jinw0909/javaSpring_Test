@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.jinw0909.spring.lesson06.bo.FavoriteBO;
 import com.jinw0909.spring.lesson06.model.Favorite;
 
-@RequestMapping("/lesson06/test01")
+@RequestMapping("/lesson06/test0")
 @Controller
 public class Lesson06Controller {
 
@@ -74,5 +74,7 @@ public class Lesson06Controller {
 		
 		return result;
 	}
+	
+
 	
 }
